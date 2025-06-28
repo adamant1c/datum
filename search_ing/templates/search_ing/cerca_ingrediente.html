@@ -1,0 +1,26 @@
+{% extends 'base_with_footer.html' %}
+{% load crispy_forms_tags %}
+
+ 
+
+{% block head_title %}{{ block.super }} - {{ cliente.nome }}{% endblock head_title %}
+
+{% block content %}
+ <div class='container'>
+    <h1> Cerca Ingrediente</h1>
+            <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget lorem a urna tristique tincidunt. Etiam at blandit sapien. Nunc elit ex, cursus ac diam in, finibus semper risus. Cras tempus leo vel massa tristique, sit amet condimentum nisl efficitur. Phasellus malesuada metus nec orci dapibus, vitae condimentum lectus lacinia. Duis consequat sed augue nec tincidunt. Vivamus quis ex at erat pellentesque bibendum id nec neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce in quam ornare, blandit justo volutpat, vehicula metus. Aliquam faucibus id eros eget consequat. Ut sollicitudin ante nisl, volutpat aliquam justo aliquet ut. Maecenas posuere interdum eros nec convallis.
+
+                    Etiam dignissim ac ex ut ullamcorper. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut tempor facilisis dapibus. Morbi malesuada nisi quis scelerisque ornare. Aenean ac nibh hendrerit, vestibulum nulla in, faucibus est. Aenean venenatis metus vehicula orci mattis sollicitudin. Cras molestie leo sit amet ipsum ultrices pellentesque. Cras congue fermentum suscipit. Aliquam justo diam, posuere eget iaculis semper, varius sit amet metus. Nam finibus pulvinar nisl vitae consequat.
+
+                    Fusce mattis, dui nec sollicitudin gravida, tortor elit bibendum urna, nec varius justo ligula eget urna. Ut placerat eros in turpis ullamcorper, eget tempor mi tempus. Mauris mi nunc, blandit aliquam nisi ut, malesuada lacinia velit. Duis egestas maximus lacus vel mollis. Nulla a lacus rhoncus, tristique augue ac, euismod felis. Mauris faucibus libero nisi, quis convallis massa pharetra nec. Cras euismod magna nec mauris mollis iaculis. Aliquam venenatis pulvinar consequat.
+          </p>
+          <br>
+</div>
+<div class='container-fluid text-center'>
+    <form action="{% url 'search_results' %}" method="get">
+      <input name="q" type="text" placeholder="Search...">
+    </form>
+</div>   
+
+{% endblock content %}

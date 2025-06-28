@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js"
+      integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js"
+      integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+    
+    <link rel="stylesheet" href="{% static 'css/datum.css' %}" />
+    <style>
+        body {
+           font-family: 'Cormorant', serif;
+           
+           background: white;
+           
+        }
+
+        h1{
+            text-align: center;
+            color: #731DD8;
+        }
+
+        table {
+            
+            text-align: center;
+            background: #E4DFDA
+        }
+
+    </style>
+    <title>{% block head_title %}Datum{% endblock head_title %}</title>
+  </head>
+  <body>
+  
+  
+        <script>
+
+        $(document).ready(function(){
+          $('.toast').toast({
+                    autohide: false
+                });
+           
+        $('.toast').toast('show');
+        });
+        </script>
+  
+  
+  
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#94A89A">
+      <div class="container">
+        <a class="navbar-brand" href="/">Homepage</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+
+          <ul class="navbar-nav ms-auto">
+            {% if request.user.is_authenticated %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/cliente/homepage">DashBoard Nutrizionista</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/search_ing/vedi_ingredienti">Inserisci Ingrediente</a>
+                </li>
+            </ul>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                {{ request.user.username }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                <a class="dropdown-item" href="{% url 'password_change' %}"
+                  >Aggiorna Password</a
+                >
+
+<div class="dropdown-divider"></div>
+    <!-- Sostituisci il link con un form POST -->
+    <form method="post" action="{% url 'logout' %}" class="dropdown-item-text p-0">
+        {% csrf_token %}
+        <button type="submit" class="dropdown-item btn btn-link text-left w-100 border-0 bg-transparent" style="text-decoration: none;">
+            Esci
+        </button>
+    </form>
+  </div>
+</li>
+            {% else %}
+           
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                    <a  href="{% url 'Vai_profilo'  %}" >Profilo </a>
+                <div class="dropdown-divider"></div>
+                 <a  href="{% url 'Vai_servizi'  %}" >Servizi</a>
+                 <div class="dropdown-divider"></div>
+                 <a  href="{% url 'Vai_news'  %}" >News</a>
+                 <div class="dropdown-divider"></div>
+                 <a  href="{% url 'Vai_contatti'  %}" > Contatti  </a>
+              </div>
+            </li>
+           
+           
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    {% for message in messages %}
+    
+            <!-- Flexbox container for aligning the toasts -->
+            <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+
+              <!-- Then put toasts within -->
+              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header" >
+                  
+                  <strong class="me-auto">Novità</strong>
+                  <small>Vedi nella sezione News i dettagli.</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                  {{message}} 
+                </div>
+              </div>
+            </div>
+    
+    
+  {% endfor %}
+ 
+        
+    <div class="container">{% block content %} {% endblock content %}</div>
+    
+    
+  
+   
+    
+    
+    
+    
+    
+           
+            
+           
+        
+    <!-- Bootstrap Bundle JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

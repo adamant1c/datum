@@ -1,0 +1,51 @@
+body {
+   font-family: 'Cormorant', serif;
+   
+   background: #E4DFDA;
+   
+}
+
+a, a:hover{
+    color: #A44A3F;
+}
+
+h1{
+    text-align: center;
+    color: #731DD8;
+}
+
+table {
+    
+    text-align: center;
+    background: #E4DFDA
+}
+
+.card {
+    background: #D4E09B
+}
+
+.card-header {
+    background: #C7AC92
+}
+
+
+input {
+    background: #C7AC92
+    
+}
+
+
+ .forme {
+            #background-color: #ffcdb2;
+            font-style: italic;
+            font-weight: bold;
+            #line-height: 120%;
+            #background: silver;
+            #height: 1050px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+

@@ -1,0 +1,69 @@
+{% extends 'base_with_footer.html' %}
+{% block head_title %}{{ block.super }} Risultato Ricerca {% endblock head_title %}
+
+{% block content %}
+
+    <h1>Search Results</h1>
+
+<div class="container">
+  {% for ingrediente in object_list %}
+  
+      
+          <div class="row">
+            <div class="col-2">
+              <strong>Nome Ingrediente  </strong>
+            </div>
+            <div class="col-6">
+                {{ ingrediente.Nome  }}
+            </div>
+            
+          </div>
+          
+          <div class="row">
+            <div class="col-2">
+              <strong>Contiene istamina?  </strong>
+            </div>
+            <div class="col-6">
+                {{ ingrediente.Flag_istamina  }}
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <strong>Contiene nichel?  </strong>
+            </div>
+            <div class="col-6">
+                {{ ingrediente.Flag_nichel  }}
+            </div>
+            
+          </div>
+           <div class="row">
+            <div class="col-2">
+              <strong>Contiene ferro?  </strong>
+            </div>
+            <div class="col-6">
+                {{ ingrediente.Flag_ferro  }}
+            </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <strong>Note  </strong>
+            </div>
+            <div class="col-6">
+                {{ ingrediente.Note  }}
+            </div>
+            
+          </div>
+       
+
+        <hr>
+  {% endfor %}
+</div>
+<div class='container-fluid text-center'>
+     <button type="button" class="btn btn-primary btn-lg">
+                 <a style="color:white;" href="{% url 'Cerca_ingrediente_cliente'  %}" >Torna alla Ricerca </a></h5>
+      </button>
+</div>
+{% endblock content %}
+

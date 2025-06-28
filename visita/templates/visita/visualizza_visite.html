@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+ 
+
+{% block head_title %}{{ block.super }} - {{ cliente.nome }}{% endblock head_title %}
+
+{% block content %}
+    <h1> {{ cliente.nome }}</h1>
+    {% for visita in visite_lista %}
+    <div class="card my-3">
+      
+            <div class="card-header pb-0">
+                <h3>{{ visita.argomento }}</h3>
+                <!-- date: https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date -->
+                <p class="text-muted">{{ visita.data|date:"D d M Y" }}</p>
+                
+                
+            </div>
+        
+
+        <div class="card-body">
+                {{ visita.descrizione }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-right">
+        <span class="step-links">
+            {% if visite_lista.has_previous %}
+                <a href="?pagina=1">&laquo; prima</a>
+                <a href="?pagina={{ visite_lista.previous_page_number }}">precedente</a>
+            {% endif %}
+
+            <span class="current">
+                Pagina {{ visite_lista.number }} di {{ visite_lista.paginator.num_pages }}.
+            </span>
+
+            {% if visite_lista.has_next %}
+                <a href="?pagina={{ visite_lista.next_page_number }}">successiva</a>
+                <a href="?pagina={{ visite_lista.paginator.num_pages }}">ultima &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+    {% if request.user.is_authenticated %}
+        {% include 'visita/form_risposta.html' %}
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Per inserire i dati devi prima effettuare il <a href="{% url 'login' %}?next={{ request.get_full_path }}">login</a>
+        </div>
+    {% endif %}
+
+{% endblock content %}

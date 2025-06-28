@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block head_title %}{{ block.super }} Lista Ingredienti {% endblock head_title %}
+
+{% block content %}
+ <div class='container-fluid text-center'>
+         <br>
+         {% if request.user.is_authenticated %} 
+                           <form class="mb-3" action="{% url 'crea_ingrediente' %}" method="POST">
+                                {% csrf_token %}
+                                
+                                <input type="submit" class="btn btn-info" value="Aggiungi Ingrediente">
+                            </form>
+                         
+                       
+                  
+        {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            <p> DEVI effettuare il login <a href="{% url 'login' %}?next={{ request.get_full_path }}"> login</a>! </p> 
+                        </div>
+        {% endif %} 
+</div>
+
+<h1><strong>Lista Ingredienti</strong></h1>
+{% for ingrediente in lista_ingredienti %}
+    <div class="card border border-primary shadow-0 mb-3" >
+        <div class="card-header">
+        <h4><strong>Nome ingrediente: {{ ingrediente.Nome }} </strong></h4>
+           
+        </table>
+        
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-5">
+                    <p>Flag Istamina: 
+                    
+                </div>
+                <div class="col-lg-7">
+                    <p>{{ ingrediente.Flag_istamina }}</p>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <p>Flag nichel: 
+                    
+                </div>
+                <div class="col-lg-7">
+                    <p>{{ ingrediente.Flag_nichel }}</p>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <p>Flag ferro: 
+                    
+                </div>
+                <div class="col-lg-7">
+                    <p>{{ ingrediente.Flag_ferro }}</p>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <p>Note: 
+                    
+                </div>
+                <div class="col-lg-7">
+                    <p>{{ ingrediente.Note }}</p>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+{% endfor %}
+   
+{% endblock content %}
+

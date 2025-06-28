@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block head_title %}{{ block.super }} Lista Clienti {% endblock head_title %}
+
+{% block content %}
+ <div class='container-fluid text-center'>
+         <br>
+         {% if request.user.is_authenticated %} 
+                           <form class="mb-3" action="{% url 'crea_cliente' %}" method="POST">
+                                {% csrf_token %}
+                                
+                                <input type="submit" class="btn btn-info" value="Aggiungi Cliente">
+                            </form>
+                         
+                       
+                  
+        {% else %}
+                        <div class="alert alert-primary" role="alert">
+                            <p> DEVI effettuare il login <a href="{% url 'login' %}?next={{ request.get_full_path }}"> login</a>! </p> 
+                        </div>
+        {% endif %} 
+</div>
+
+<h1><strong>Lista Clienti</strong></h1>
+{% for cliente in lista_clienti %}
+    <div class="card border border-primary shadow-0 mb-3" >
+        <div class="card-header">
+        <h4><strong>Nome Cliente: {{ cliente.nome }} {{ cliente.cognome }}</strong></h4>
+            <table class="table mt-3">
+                <tbody>
+                <tr class="row">
+                    
+                        <td class="col-md-5 ">
+                           <h5><a href="{% url 'vedi_visite_cliente' pk=cliente.pk %}"><strong>Visite</strong></a></h5>
+                        </td>
+                        <td class="col-md-5 ">
+                            <h5><a href="{% url 'vedi_diete_cliente' pk=cliente.pk %}"><strong>Dieta</strong></a></h5>
+                        </td>
+                        
+                        <td class="col-md-2"><a href="{% url 'cancella_cliente' pk=cliente.pk %}"> Cancella Cliente <i class="fas fa-minus-circle"></i></a></td>
+                    
+                </tr> 
+            </tbody>
+        </table>
+        
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3">
+                    <p>Numero di Telefono: {{ cliente.numero_telefono }}
+                    <br>Email: {{ cliente.email }}</p>
+                </div>
+                <div class="col-lg-3">
+                    <p>Indirizzo: {{ cliente.indirizzo }}</p>
+                </div>
+                <div class="col-lg-6">
+                    <p>Patologia: {{ cliente.patologia }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+   
+{% endblock content %}

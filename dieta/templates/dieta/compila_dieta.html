@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{{ block.super }} - {{ dieta.nome }}{% endblock head_title %}
+
+{% block content %}
+    <h1>  {{ dieta.nome }}</h1>
+    
+    
+    
+    
+    {% for pasto in tipo_pasto %}
+    <div class="card my-3">
+      
+            <div class="card-header pb-0">
+               <h3>Tipo Pasto: {{ pasto.tipo_pasto }}</h3>
+   
+              
+                
+            </div>
+        
+
+                        <div class="card-body">
+                                    
+                                 <p class="text-muted">Giorno: {{ pasto}}</p>
+               
+                                <br>
+                                <p class="text-muted">Nome Piatto: {{ pasto.nome_piatto }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+        
+         <div class="text-right">
+                        <span class="step-links">
+                            {% if dtipo_pasto.has_previous %}
+                                <a href="?pagina=1">&laquo; prima</a>
+                                <a href="?pagina={{ tipo_pasto.previous_page_number }}">precedente</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Pagina {{ tipo_pasto.number }} di {{ tipo_pasto.paginator.num_pages }}.
+                            </span>
+
+                            {% if tipo_pasto.has_next %}
+                                <a href="?pagina={{ tipo_pasto.next_page_number }}">successiva</a>
+                                <a href="?pagina={{ tipo_pasto.paginator.num_pages }}">ultima &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                    
+
+
+    {% if request.user.is_authenticated %}
+        <br>
+        
+        <div class="text-center">
+        <h1> Compila per aggiungere un pasto alla dieta </h1>
+        {% include 'dieta/form_compila_dieta.html' %}
+         </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Per inserire i dati devi prima effettuare il <a href="{% url 'login' %}?next={{ request.get_full_path }}">login</a>
+        </div>
+    {% endif %}
+
+   
+{% endblock content %}
